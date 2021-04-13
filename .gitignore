@@ -3,3 +3,13 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
 release.properties
+
+##############################
+## IntelliJ
+##############################
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
