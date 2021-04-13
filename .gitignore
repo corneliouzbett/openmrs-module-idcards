@@ -13,3 +13,6 @@ out/
 *.iml
 *.ipr
 *.iws
+
+!.gitignore
+!.github
