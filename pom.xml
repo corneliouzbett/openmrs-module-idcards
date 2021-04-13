@@ -24,33 +24,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!--
-			Libraries from lib to add as dependencies with compile or runtime scope:
-			lib/batik-gvt-1.7.jar
-lib/batik-svg-dom-1.7.jar
-lib/batik-transcoder-1.7.jar
-lib/batik-awt-util-1.7.jar
-lib/batik-bridge-1.7.jar
-lib/batik-extension-1.7.jar
-lib/batik-ext-1.7.jar
-lib/xmlgraphics-commons-1.4.jar
-lib/jakarta-oro-2.0.8.jar
-lib/avalon-framework-impl-4.3.1.jar
-lib/avalon-framework-4.2.0.jar
-lib/barcode4j-fop-ext-complete.jar
-lib/avalon-framework-api-4.3.1.jar
-lib/fop-1.0.jar
-lib/batik-all-1.6.jar
-				
-			Find matching dependencies in maven central repository.
-			<dependency>
-				<groupId>org.other.library</groupId>
-				<artifactId>library-name</artifactId>
-				<version>library.version</version>
-				<scope>compile</scope>
-			</dependency>
-			-->
-			
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
@@ -102,8 +75,8 @@ lib/batik-all-1.6.jar
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<target>1.6</target>
-						<source>1.6</source>
+						<target>1.8</target>
+						<source>1.8</source>
 					</configuration>
 				</plugin>
 				<plugin>
