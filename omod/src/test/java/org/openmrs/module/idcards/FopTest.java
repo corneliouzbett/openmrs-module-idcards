@@ -1,22 +1,26 @@
-package org.openmrs.module.idcards.test;
+package org.openmrs.module.idcards;
 
-import org.apache.fop.apps.*;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.app.VelocityEngine;
+import org.apache.fop.apps.FOPException;
+import org.apache.fop.apps.FOUserAgent;
+import org.apache.fop.apps.Fop;
+import org.apache.fop.apps.FopFactory;
+import org.apache.fop.apps.MimeConstants;
 import org.junit.Test;
-import org.junit.Before;
 import org.openmrs.api.APIException;
-import org.openmrs.api.context.Context;
 import org.openmrs.util.OpenmrsUtil;
-import org.openmrs.reporting.export.DataExportFunctions;
-import org.openmrs.Cohort;
-import org.openmrs.test.BaseModuleContextSensitiveTest;
 
-import javax.xml.transform.*;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.StringReader;
 
 /**
  * This class tests the use of FOP to create a pdf file from an xslt and an xml.
@@ -38,8 +42,8 @@ public class FopTest {
         TransformerFactory tFactory = TransformerFactory.newInstance();
         try {
             // Uncomment a pair of xslFile and xmlFile to test them.
-            File xslFile = new File("test/org/openmrs/module/idcards/include/newIdCardsBack.xsl");
-            File xmlFile = new File("test/org/openmrs/module/idcards/include/identifiers.xml");
+            File xslFile = new File("src/test/resources/org/openmrs/module/idcards/include/newIdCardsBack.xsl");
+            File xmlFile = new File("src/test/resources/org/openmrs/module/idcards/include/identifiers.xml");
 
             //File xslFile = new File("test/org/openmrs/module/idcards/include/reprintIdCards.xsl");
             //File xmlFile = new File("test/org/openmrs/module/idcards/include/reprintIdCards.xml");
@@ -73,7 +77,7 @@ public class FopTest {
             byte[] outBytes = out.toByteArray();
 
             // Get the output file.
-            File file = new File("out/fop_test.pdf");
+            File file = new File("src/test/resources/out/fop_test.pdf");
 
             try {
                 FileOutputStream outStream = new FileOutputStream(file);
@@ -89,9 +93,6 @@ public class FopTest {
             org.junit.Assert.fail(e.getMessage());
             throw new APIException("Cannot get xsl file. ", e);
         } catch (FOPException e) {
-            org.junit.Assert.fail(e.getMessage());
-            throw new APIException("Error generating report", e);
-        } catch (TransformerConfigurationException e) {
             org.junit.Assert.fail(e.getMessage());
             throw new APIException("Error generating report", e);
         } catch (TransformerException e) {

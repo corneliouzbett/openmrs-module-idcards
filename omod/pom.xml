@@ -6,7 +6,6 @@
 		<artifactId>idcards</artifactId>
 		<version>1.3.2-SNAPSHOT</version>
 	</parent>
-	<groupId>org.openmrs.module</groupId>
 	<artifactId>idcards-omod</artifactId>
 	<packaging>jar</packaging>
 	<name>Id Cards OMOD</name>
